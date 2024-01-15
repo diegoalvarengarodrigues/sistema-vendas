@@ -1,5 +1,3 @@
-import json
-
 class Venda:
     def __init__(self, cliente, vendedor):
         self.cliente = cliente
@@ -13,16 +11,15 @@ class Venda:
         return sum(produto.preco for produto in self.produtos)
     
     def emitir_cupom_fiscal(self, forma_pagamento):
-        pass
+        cupom = f"======= Cupom Fiscal =======\n"
+        cupom += f"Cliente: {self.cliente.nome}\n"
+        cupom += f"Vendedor: {self.vendedor.nome}\n"
+        cupom += f"======= Produtos =======\n"
+        for produto in self.produtos:
+            cupom += f"{produto.nome}: R${produto.preco:.2f}\n"
+        cupom += f"======= Total: R${self.calcular_total():.2f} =======\n"
+        cupom += f"Forma de Pagamento: {forma_pagamento}\n"
+        cupom += f"===========================\n"
+        return cupom
     
-    def salvar_em_arquivo(dados, nome_arquivo):
-        with open(nome_arquivo, 'w') as file:
-            json.dump(dados, file)
-    
-    def carregar_de_arquivo(nome_arquivo):
-        try:
-            with open(nome_arquivo, 'r') as file:
-                return json.load(file)
-        except FileNotFoundError:
-            return []
         
