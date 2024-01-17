@@ -15,21 +15,21 @@ class TelaPrincipal:
         frame_principal = ttk.Frame(root)
         frame_principal.grid(row=0, column=0)
         
-        imagem = tk.PhotoImage(file='D:\Vendas\logo.png')  # Substitua 'logo.png' pelo caminho da sua imagem
-        label_imagem = ttk.Label(frame_principal, image=imagem)
-        label_imagem.grid(row=0, column=0, columnspan=3, pady=20)
+        self.imagem = tk.PhotoImage(file="logo.png")  # Substitua 'logo.png' pelo caminho da sua imagem
+        label_imagem = ttk.Label(frame_principal, image=self.imagem)
+        label_imagem.grid(row=1, column=0, columnspan=3, pady=20, sticky="nsew")
 
         self.cadastrar_cliente_button = ttk.Button(frame_principal, text="Cadastrar Cliente", command=self.abrir_cadastro_cliente, style="TButton")
-        self.cadastrar_cliente_button.grid(row=1, column=0, padx=10, pady=10)
+        self.cadastrar_cliente_button.grid(row=0, column=0, padx=10, pady=10)
 
         self.cadastrar_vendedor_button = ttk.Button(frame_principal, text="Cadastrar Vendedor", command=self.abrir_cadastro_vendedor, style="TButton")
-        self.cadastrar_vendedor_button.grid(row=1, column=1, padx=10, pady=10)
+        self.cadastrar_vendedor_button.grid(row=0, column=1, padx=10, pady=10)
 
         self.cadastrar_produto_button = ttk.Button(frame_principal, text="Cadastrar Produto", command=self.abrir_cadastro_produto, style="TButton")
-        self.cadastrar_produto_button.grid(row=1, column=2, padx=10, pady=10)
+        self.cadastrar_produto_button.grid(row=0, column=2, padx=10, pady=10)
 
         self.realizar_venda_button = ttk.Button(frame_principal, text="Realizar Venda", command=self.abrir_realizar_venda, style="TButton")
-        self.realizar_venda_button.grid(row=2, column=0, columnspan=3, pady=10)
+        self.realizar_venda_button.grid(row=2, column=0, columnspan=3, pady=10, sticky="nsew")
 
         self.sair_button = ttk.Button(frame_principal, text="Sair", command=root.destroy, style="TButton")
         self.sair_button.grid(row=3, column=0, columnspan=3, pady=10)
@@ -37,6 +37,14 @@ class TelaPrincipal:
         # Configurar estilo para os botões
         style = ttk.Style()
         style.configure("TButton", foreground="#0000CD", background="#87CEFA", font=('Arial', 14))
+        
+        frame_principal.columnconfigure(0, weight=1)
+        frame_principal.columnconfigure(1, weight=1)
+        frame_principal.columnconfigure(2, weight=1)
+        frame_principal.rowconfigure(0, weight=1)
+        frame_principal.rowconfigure(1, weight=1)
+        frame_principal.rowconfigure(2, weight=1)
+        frame_principal.rowconfigure(3, weight=1)
 
     def abrir_cadastro_cliente(self):
         cadastro_cliente_window = tk.Toplevel(self.root)
